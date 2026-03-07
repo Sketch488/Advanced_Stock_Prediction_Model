@@ -17,3 +17,33 @@ Libraries:
 3. XGBoost
 4. ta
 5. openyxl
+
+How it works: 
+1. Load and preprocess data
+   - Converts Date column to datetime
+   - Sort by date
+   - Create day index for modeling
+   - Calculate technical indicators and engineered features
+   - Build lag features for OHLCV
+2. Target creation
+   - Predict next-day return:
+     data["target_return"] = data["Close"].pct_change().shift(-1)
+   - Optional direction feature:
+     data["direction"] = (data["Close"].pct_change() > 0).astype(int)
+3. Train/Test Split
+   - 80% for training, 20% for testing
+   - Features include lagged OHLCV, technical indicators, and engineered features
+   - Target = target_return
+4. Train Model
+   - Uses XGBoost Regressor
+   - Hyperparameters optimized for stability and performance
+5. Evaluate Model
+   - MAE of returns → average prediction error
+   - Direction accuracy → how often the model predicts up vs down correctly
+   - Return correlation → correlation between predicted and actual return
+6. 7-Day Forecast
+   - Recursive forecast using predicted returns to compute future Close prices
+   - Skips weekends using business days
+   - Saves results to Excel (COVER Corporation_next_7_days.xlsx)
+
+Note: The MAE is about 4%. I am still working on getting it close to 0%
