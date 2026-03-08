@@ -4,9 +4,11 @@ import yfinance as yf
 
 tickers = ["5253.T", "5032.T"]
 company_names = ["COVER Corporation", "ANYCOLOR Inc"]
+# tickers = ["AAPL"]
+# company_names = ["Apple"]
 fields = ["Open", "High", "Low", "Close", "Volume"]
 
-data = yf.download(tickers, period="6mo", interval="1d")
+data = yf.download(tickers, period="1y", interval="1d")
 
 def write_company_file(ticker, company_name):
     filepath = f"{company_name}.xlsx"
