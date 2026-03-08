@@ -47,3 +47,19 @@ How it works:
    - Saves results to Excel (COVER Corporation_next_7_days.xlsx)
 
 Note: The MAE is about 4%. I am still working on getting it close to 0%
+
+Results:
+Apple
+Test MAE Return: 0.011828 (1.18%)
+Direction Accuracy: 58.54%
+Return Correlation: 0.160
+
+ANYCOLOR Inc
+Test MAE Return: 0.024686 (2.46%)
+Direction Accuracy: 23.81%
+Return Correlation: 0.497
+
+COVER Corporation
+Test MAE Return: 0.020955 (2.09%)
+Direction Accuracy: 65.08%
+Return Correlation: 0.316
